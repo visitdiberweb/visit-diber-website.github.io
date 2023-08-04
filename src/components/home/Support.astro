@@ -1,0 +1,97 @@
+---
+// Components
+import { Image } from '@astrojs/image/components'
+import SectionContent from '../SectionContent.astro'
+import FAQCard from '../FAQCard.astro'
+
+// Data
+const allQuestions = await Astro.glob('../../data/faq/*.md')
+---
+
+<div class='relative'>
+  <div id='faq' class='page-container'>
+    <SectionContent
+      title='Frequently Asked Questions'
+      subtitle='Support'
+      icon_src='/icons/faq_icon.svg'
+      section_color={'gray'}
+    >
+      Planning your trip to Diber but not sure where to start? Take a look at
+      our Frequently Asked Questions section below.
+    </SectionContent>
+
+    <!-- Questions -->
+    <div class='grid grid-cols-1 md:grid-cols-2 items-start gap-6 mt-12'>
+      {
+        allQuestions.map((question) =>
+          question.frontmatter.faq.map((e) => (
+            <FAQCard question={e.question} answer={e.answer} />
+          )),
+        )
+      }
+    </div>
+    <!-- Contact form -->
+    <div class='mt-14'>
+      <h2 id='contact' class='text-4xl font-bold'>Contact</h2>
+      <p class='text-base lg:text-lg text-gray-500 my-5 lg:max-w-5xl text-left'>
+        We are at your service year-round, located on the second floor of the
+        Palace of Culture situated in the center of Peshkopi. Whether you need
+        assistance with travel arrangements, activity recommendations, or
+        accommodation options in Diber, feel free to submit your inquiries
+        below. Our staff will respond to your requests within a few days.
+        Explore the beauty of Diber with confidence, knowing that we are here to
+        make your experience unforgettable.
+      </p>
+      <form
+        name='contact'
+        method='POST'
+        netlify-honeypot='bot-field'
+        data-netlify='true'
+        action='/success/'
+      >
+        <!-- Bot filed used to prevent spam -->
+        <input class='hidden' name='bot-field' />
+
+        <div class='flex flex-col md:flex-row gap-6 max-w-7xl mt-12'>
+          <div class='flex flex-col gap-6 w-full'>
+            <input
+              class='input-item'
+              type='text'
+              name='name'
+              placeholder='Name'
+            />
+
+            <input
+              class='input-item'
+              type='email'
+              name='email'
+              placeholder='Email'
+            />
+          </div>
+
+          <div class='flex flex-col gap-6 w-full'>
+            <textarea
+              class='input-item min-h-[148px] max-h-64'
+              name='message'
+              placeholder='Message'></textarea>
+
+            <button
+              class='w-full bg-gray-300 hover:opacity-80 transition-opacity duration-200 p-3 rounded-lg font-bold text-lg'
+              type='submit'
+              >Send
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <Image
+    class='hidden md:block absolute -bottom-20 right-0 -z-10'
+    src='/icons/faq_icon_bg.svg'
+    width={822 / 1.3}
+    height={1172 / 1.3}
+    alt='background icon'
+    format='svg'
+  />
+</div>

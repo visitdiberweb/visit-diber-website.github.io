@@ -1,0 +1,73 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply text-gray-800;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+:root {
+  --ideal-height: max(100vh, 800px);
+  --ideal-width: max(90wh, 600px);
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.material-symbols-rounded {
+  font-variation-settings: 'FILL' 0, 'wght' 900, 'GRAD' 200, 'opsz' 48;
+}
+
+/* Change the color of the selection */
+::-moz-selection {
+  /* Code for Firefox */
+  background: rgba(153, 153, 153, 0.361);
+}
+
+::selection {
+  background: rgba(153, 153, 153, 0.361);
+}
+
+.page-container {
+  @apply mx-auto px-6 py-20 max-w-7xl;
+}
+
+.bg-icons {
+  @apply hidden md:block absolute bottom-0 left-0 -z-10;
+}
+
+.navbar-item {
+  @apply hover:underline rounded-md py-2;
+}
+
+.input-item {
+  @apply w-full text-lg p-4 bg-white/50 backdrop-blur-md rounded-xl text-gray-500 border-gray-300/30 border;
+}
+
+.radial-gradient {
+  background-image: radial-gradient(rgb(17 24 39 / 0.8), rgba(17, 24, 39, 0));
+}
+
+/* Svg mpa */
+.component .tooltip {
+  visibility: hidden;
+}
+.component:hover .tooltip {
+  visibility: visible;
+}
+
+.popover {
+  @apply text-gray-100 text-[4px] font-bold bg-gray-800 px-1  py-[2px] rounded-sm inline;
+}
