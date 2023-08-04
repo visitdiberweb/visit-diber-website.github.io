@@ -13,6 +13,5 @@ export default defineConfig({
     }),
     react(),
   ],
-  site: 'https://www.visitdiber.com/',
-  base: '/main',
+  site: 'https://visitdiber.github.io',
 })
